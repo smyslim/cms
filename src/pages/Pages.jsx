@@ -7,7 +7,7 @@ export class Pages extends React.Component{
     }
     render() {
         return <div>
-            <NavLink to="addPage">Добавить страницу</NavLink>
+            <NavLink className="btn btn-primary" to="addPage">Добавить страницу</NavLink>
         </div>
     }
 }
