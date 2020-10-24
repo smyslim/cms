@@ -10,10 +10,23 @@ import "ace-builds/src-noconflict/ext-emmet";
 export class AddPage extends React.Component{
     constructor() {
         super();
+        this.htmlEditor = React.createRef(); //создаем Ref
+        this.handleSave = this.handleSave.bind(this); //binding this of AddPage class to this of handleSave function, because every function has its own this
     }
 
     handleSave(){
-        console.log("Ура,клик сработал!")
+        let formData = new FormData();
+        formData.append('html', this.htmlEditor.current.editor.getValue())
+        fetch("http://o9150210.beget.tech/addPage",{
+            method: 'POST',
+            body: formData
+        })
+            .then(response=>response.json())
+            .then(result=>console.log(result))
+    }
+
+    componentDidMount() {
+        console.log("Вызвана фунция componentDidMount");
     }
 
     render() {
@@ -35,6 +48,7 @@ export class AddPage extends React.Component{
                     mode="html"
                     width="100%"
                     theme="vibrant_ink"
+                    ref={this.htmlEditor}
                     setOptions={{
                         fontSize:18,
                         enableEmmet:true
