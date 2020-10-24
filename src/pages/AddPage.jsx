@@ -11,12 +11,16 @@ export class AddPage extends React.Component{
     constructor() {
         super();
         this.htmlEditor = React.createRef(); //создаем Ref
+        this.cssEditor = React.createRef();
+        this.jsEditor = React.createRef();
         this.handleSave = this.handleSave.bind(this); //binding this of AddPage class to this of handleSave function, because every function has its own this
     }
 
     handleSave(){
         let formData = new FormData();
         formData.append('html', this.htmlEditor.current.editor.getValue())
+        formData.append('css', this.cssEditor.current.editor.getValue())
+        formData.append('js', this.jsEditor.current.editor.getValue())
         fetch("http://o9150210.beget.tech/addPage",{
             method: 'POST',
             body: formData
@@ -60,6 +64,7 @@ export class AddPage extends React.Component{
                     mode="css"
                     width="100%"
                     theme="vibrant_ink"
+                    ref={this.cssEditor}
                     setOptions={{
                         fontSize:18,
                         enableEmmet:true
@@ -71,6 +76,7 @@ export class AddPage extends React.Component{
                     mode="javascript"
                     width="100%"
                     theme="vibrant_ink"
+                    ref={this.jsEditor}
                     setOptions={{
                         fontSize:18,
                         enableEmmet:true
