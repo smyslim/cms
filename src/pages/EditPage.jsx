@@ -11,8 +11,6 @@ export class EditPage extends React.Component{
             pageId: "",
             name: "",
             title: "",
-            nameValue: "",
-            titleValue: ""
         }
         this.handleUpdate = this.handleUpdate.bind(this)
         this.handleInputUpdate = this.handleInputUpdate.bind(this)
@@ -62,8 +60,8 @@ export class EditPage extends React.Component{
                 this.cssEditor.current.editor.setValue(page.css)
                 this.jsEditor.current.editor.setValue(page.js)
                 this.setState({
-                    nameValue: page.name,
-                    titleValue: page.title
+                    name: page.name,
+                    title: page.title
                 })
             })
     }
@@ -121,10 +119,10 @@ export class EditPage extends React.Component{
                 </div>
                 <div className="tap-pane fade" id="nav-extraHTML" role="tabpanel" aria-labeledby="nav-extraHTML-tab">
                     <div className="mb-3 my-3">
-                        <input name="name" value={this.state.nameValue} onChange={this.handleInputUpdate} type="text" className="form-control" placeholder="URL страницы"/>
+                        <input name="name" value={this.state.name} onChange={this.handleInputUpdate} type="text" className="form-control" placeholder="URL страницы"/>
                     </div>
                     <div className="mb-3">
-                        <input name="title" value={this.state.titleValue} onChange={this.handleInputUpdate} type="text" className="form-control" placeholder="Заголовок страницы"/>
+                        <input name="title" value={this.state.title} onChange={this.handleInputUpdate} type="text" className="form-control" placeholder="Заголовок страницы"/>
                     </div>
                 </div>
             </div>
